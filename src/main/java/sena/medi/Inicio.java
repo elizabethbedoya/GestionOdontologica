@@ -4,6 +4,8 @@
  */
 package sena.medi;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author ADMIN
@@ -61,6 +63,11 @@ public class Inicio extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(153, 255, 255));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setText("GESTION DE PACIENTES");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(153, 255, 255));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -115,12 +122,15 @@ public class Inicio extends javax.swing.JFrame {
         label1.setText("El Sistema de Gestión Odontológica permite administrar la información \nde los pacientes, tratamientos y citas.");
         getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 630, 50));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\Gestion_Odontologica\\src\\main\\other resources\\imagen2.png")); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 790, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

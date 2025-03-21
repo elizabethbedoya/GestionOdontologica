@@ -30,6 +30,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
      Statement st;
      ResultSet rs;
      DefaultTableModel modelo;
+     int idc;
     
      
      
@@ -38,6 +39,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
      */
     public Gestionar_Pacientes() {
         initComponents();
+     
         consultar();
         
         
@@ -85,6 +87,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
         
         }catch (SQLException e){
           JOptionPane.showMessageDialog(null, "No se pudo ingresar");
+            System.err.println("" +e);
         }
 
         
@@ -113,12 +116,12 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
         
         
         }
-        
-        
-        
-        
-        
+       
         }
+        
+     
+
+        
         
    
 
@@ -186,10 +189,20 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(153, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("ACTUALIZAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(153, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(153, 255, 255));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -298,10 +311,56 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtregistroMouseClicked
+       txtid.setEditable(false);
+       int fila = jtregistro.getSelectedRow();
+      if (fila ==-1){
+          JOptionPane.showMessageDialog(null,"Seleccione una fila");
+      }else{
+      idc=Integer.parseInt(jtregistro.getValueAt(fila,0).toString());
+      String nombres= (String) jtregistro.getValueAt(fila, 1);
+      String apellidos= (String) jtregistro.getValueAt(fila, 2);
+      
+       //obtener la fecha de la tabla (esta en formato string)
+      Object fechaobj = jtregistro.getValueAt(fila,3);
+      if(fechaobj instanceof  java.sql.Date){
+      java.sql.Date fechasql = (java.sql.Date) fechaobj;
+      jdfecha.setDate(new java.util.Date(fechasql.getTime()));
+      }else if (fechaobj instanceof String){
+          try{
+          SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); //ajustar al formato
+          java.util.Date fecha = formato.parse((String) fechaobj);
+          jdfecha.setDate(fecha);
+          }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Error al convertir la fecha");
+          }
+      
+      
+      }
+       
+      //traer el sexo reiniciarlo
+      
+      String sexotexto = (String) jtregistro.getValueAt(fila,4);
+      if(sexotexto.equalsIgnoreCase("M")){
+       rbmasculino.setSelected(true);
+       rbfemenino.setSelected(false);
+      }else if(sexotexto.equalsIgnoreCase("F")){
+       rbfemenino.setSelected(true);
+       rbmasculino.setSelected(false);
+      }
+      txtid.setText(""+idc);
+      txtnombres.setText(nombres);
+      txtapellidos.setText(apellidos);
+      }
+    }//GEN-LAST:event_jtregistroMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-      
-    }//GEN-LAST:event_jtregistroMouseClicked
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
