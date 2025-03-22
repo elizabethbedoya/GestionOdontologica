@@ -138,7 +138,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
         String sexo =rbmasculino.isSelected() ? "M" : "F";
         
         //consulta
-        String sql= "UPDATE pacientes SET PacNombres=?,PacApellidos=?,PacFechaNacimiento=?,PacSexo=? WHERE PacIdentificacion";
+        String sql= "UPDATE pacientes SET PacNombres=?,PacApellidos=?,PacFechaNacimiento=?,PacSexo=? WHERE PacIdentificacion=?";
         Connection conet= co.getConnection();
         PreparedStatement pst = conet.prepareStatement(sql);
         
