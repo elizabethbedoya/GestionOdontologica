@@ -162,8 +162,47 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
         }
         
         }
+        
+        
+     public void eliminar(){
+     try{
+     int fila = jtregistro.getSelectedRow();
+        if (fila ==-1){
+          JOptionPane.showMessageDialog(null,"Seleccione una fila");
+         return;
+        }
+     int id=Integer.parseInt(jtregistro.getValueAt(fila,0).toString());
      
+     int confirmacion = JOptionPane.showConfirmDialog(null,
+     "Esta seguro de eliminar el registro?","Confirmar Eliminacion",JOptionPane.YES_NO_OPTION);
+     
+     if(confirmacion==JOptionPane.YES_OPTION){
+     String sql = "Delete FROM pacientes WHERE PacIdentificacion=?";
+     Connection conet= co.getConnection();
+        PreparedStatement pst = conet.prepareStatement(sql);
+        pst.setInt(1, id);
+        int filaseliminadas = pst.executeUpdate();
+        if (filaseliminadas > 0 ){
+           JOptionPane.showMessageDialog(null,"Registro Eliminado");
+           limpiar();
+           consultar();
+         }else{
+         JOptionPane.showMessageDialog(null,"No se encontro un registro para eliminar");
+         }
+     }
+     
+     
+     
+     } catch(SQLException e){
+         System.out.println("Error"+ e);
+        JOptionPane.showMessageDialog(null,"Error al eliminar" + e.getMessage());
+   
+     }
 
+
+     
+     
+     }
         
         
    
@@ -401,7 +440,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        eliminar();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
