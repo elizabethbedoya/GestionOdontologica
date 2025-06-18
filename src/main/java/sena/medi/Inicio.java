@@ -1,8 +1,10 @@
+package sena.medi;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package sena.medi;
+
 
 import javax.swing.SwingUtilities;
 
@@ -129,7 +131,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    
+         
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

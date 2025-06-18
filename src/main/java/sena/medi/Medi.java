@@ -11,6 +11,7 @@ package sena.medi;
 public class Medi {
 
     public static void main(String[] args) {
-       
+      Login lg = new Login();
+      lg.setVisible(true);
     }
 }
